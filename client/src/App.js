@@ -1,33 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { CalendarHeader } from "./components/CalendarHeader";
 import { Day } from "./components/Day";
 import { NewEventModal } from "./components/NewEventModal";
 import { DeleteEventModal } from "./components/DeleteEventModal";
 import { useDate } from "./hooks/useDate";
-import { createEvent } from "./services/eventServices";
+import { createEvent, getAllEvents } from "./services/eventServices";
 
 export const App = () => {
   const [nav, setNav] = useState(0);
   const [clicked, setClicked] = useState();
   const [event, setEvent] = useState(null);
-  const [events, setEvents] = useState(
-    localStorage.getItem("events")
-      ? JSON.parse(localStorage.getItem("events"))
-      : []
-  );
+  const [events, setEvents] = useState([]);
 
   const eventForDate = (date) => events.find((e) => e.date === date);
 
+ console.log(events);
+
+  const getEventsForDisplay = useCallback(async() => {
+    const allEvents = await getAllEvents();
+    setEvents(allEvents.events);
+  }, [setEvents]);
+
   useEffect(() => {
-    localStorage.setItem("events", JSON.stringify(events));
-  }, [events]);
+      getEventsForDisplay();
+  }, [getEventsForDisplay]);
+
+  const createNewEvent = useCallback(async (event) => {
+    await createEvent(event);
+    setEvent(null);
+    //setEvents([...events, newEvent]);
+  }, []);
 
   useEffect(() => {
     if (event !== null) {
-    createEvent(event);
-    setEvent(null);
+      createNewEvent()
     }
-  }, [event]);
+  }, [event, createNewEvent]);
 
   const { days, dateDisplay } = useDate(events, nav);
 
