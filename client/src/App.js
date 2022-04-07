@@ -14,11 +14,14 @@ export const App = () => {
 
   const eventForDate = (date) => events.find((e) => e.date === date);
 
- console.log(events);
-
   const getEventsForDisplay = useCallback(async() => {
     const allEvents = await getAllEvents();
-    setEvents(allEvents.events);
+    if (allEvents.events) {
+     const eventObjectsWithNoId = allEvents.events.map((e) => {
+        return {date: e.date, title: e.title}
+      })
+      setEvents(eventObjectsWithNoId);
+    }
   }, [setEvents]);
 
   useEffect(() => {
@@ -26,14 +29,19 @@ export const App = () => {
   }, [getEventsForDisplay]);
 
   const createNewEvent = useCallback(async (event) => {
-    await createEvent(event);
-    setEvent(null);
-    //setEvents([...events, newEvent]);
-  }, []);
+    try {
+      const newEvent = await createEvent(event);
+      setEvent(null);
+      setEvents([...events, newEvent]);
+    } catch (err) {
+      console.log(err);
+    }
+    
+  }, [events]);
 
   useEffect(() => {
     if (event !== null) {
-      createNewEvent()
+      createNewEvent(event)
     }
   }, [event, createNewEvent]);
 

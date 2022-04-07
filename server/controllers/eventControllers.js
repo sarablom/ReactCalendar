@@ -18,7 +18,7 @@ async function getSingleEvent(req, res, next) {
     const event = await Event.findById(eventId);
     res.status(200).json({
       success: true,
-      event,
+      event
     });
   } catch (err) {
     next(err);

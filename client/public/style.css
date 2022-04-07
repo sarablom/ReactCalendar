@@ -7,7 +7,7 @@ body {
 button {
   margin-right: 2.5px;
   margin-left: 2.5px;
-  width: 75px;
+  min-width: 75px;
   cursor: pointer;
   box-shadow: 0px 0px 2px gray;
   border: none;

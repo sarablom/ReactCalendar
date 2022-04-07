@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useDate = (events, nav) => {
   const [dateDisplay, setDateDisplay] = useState('');
   const [days, setDays] = useState([]);
 
-  const eventForDate = date => events.find(e => e.date === date);
+    const eventForDate = date => events.find(e => e.date === date);
 
   useEffect(() => {
     const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
