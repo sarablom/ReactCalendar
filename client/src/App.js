@@ -11,41 +11,46 @@ export const App = () => {
   const [clicked, setClicked] = useState();
   const [event, setEvent] = useState(null);
   const [events, setEvents] = useState([]);
+  const { days, dateDisplay } = useDate(events, nav);
 
   const eventForDate = (date) => events.find((e) => e.date === date);
 
-  const getEventsForDisplay = useCallback(async() => {
-    const allEvents = await getAllEvents();
-    if (allEvents.events) {
-     const eventObjectsWithNoId = allEvents.events.map((e) => {
-        return {date: e.date, title: e.title}
-      })
-      setEvents(eventObjectsWithNoId);
+  const getEventsForDisplay = useCallback(async () => {
+    try {
+      const allEvents = await getAllEvents();
+      if (allEvents?.events) {
+        const eventObjectsWithNoId = allEvents.events.map((e) => {
+          return { date: e.date, title: e.title };
+        });
+        setEvents(eventObjectsWithNoId);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }, [setEvents]);
 
   useEffect(() => {
-      getEventsForDisplay();
+    getEventsForDisplay();
   }, [getEventsForDisplay]);
 
-  const createNewEvent = useCallback(async (event) => {
-    try {
-      const newEvent = await createEvent(event);
-      setEvent(null);
-      setEvents([...events, newEvent]);
-    } catch (err) {
-      console.log(err);
-    }
-    
-  }, [events]);
+  const createNewEvent = useCallback(
+    async (event) => {
+      try {
+        const newEvent = await createEvent(event);
+        setEvent(null);
+        setEvents([...events, newEvent]);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [events]
+  );
 
   useEffect(() => {
     if (event !== null) {
-      createNewEvent(event)
+      createNewEvent(event);
     }
   }, [event, createNewEvent]);
-
-  const { days, dateDisplay } = useDate(events, nav);
 
   return (
     <>
