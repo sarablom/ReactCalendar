@@ -7,7 +7,7 @@ export const useDate = (events, nav) => {
     const eventForDate = date => events.find(e => e.date === date);
 
   useEffect(() => {
-    const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
+    const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const dt = new Date();
 
     if (nav !== 0) {
@@ -19,6 +19,7 @@ export const useDate = (events, nav) => {
     const year = dt.getFullYear();
 
     const firstDayOfMonth = new Date(year, month, 1);
+    
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
       weekday: 'long',

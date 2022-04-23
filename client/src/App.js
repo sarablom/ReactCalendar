@@ -13,7 +13,6 @@ export const App = () => {
   const [events, setEvents] = useState([]);
   const { days, dateDisplay } = useDate(events, nav);
 
-  
   const getEventsForDisplay = useCallback(async () => {
     try {
       const allEvents = await getAllEvents();
