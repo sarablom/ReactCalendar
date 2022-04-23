@@ -18,10 +18,14 @@ export const App = () => {
     try {
       const allEvents = await getAllEvents();
       if (allEvents?.events) {
-        // const eventObjectsWithNoId = allEvents.events.map((e) => {
-        //   return { date: e.date, title: e.title };
-        // });
-        // setEvents(eventObjectsWithNoId);
+        allEvents.events.map (event => {
+          const day = new Date(event.date).getDate();
+          const month = new Date(event.date).getMonth() + 1;
+          const year = new Date(event.date).getFullYear();
+
+          const dayString = `${month}/${day}/${year}`;
+          return event.date = dayString;
+        })
         setEvents(allEvents.events)
       }
     } catch (err) {
@@ -41,7 +45,7 @@ export const App = () => {
         const newEvent = await createEvent(event);
         setEvent(null);
         setEvents([...events, newEvent]);
-        console.log(events);
+        console.log(events)
       } catch (err) {
         console.log(err);
       }
