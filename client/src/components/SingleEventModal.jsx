@@ -7,27 +7,39 @@ export const SingleEventModal = ({ eventId, eventText, onClose }) => {
   };
 
   const onDelete = async () => {
-    await deleteEvent(eventId);
-    onClose();
+    try {
+      console.log("delete", eventId);
+      const deleteMessage = await deleteEvent(eventId);
+      if (deleteMessage.success) {
+        onClose();
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <>
       <div id="deleteEventModal">
-        <h2>Event</h2>
-        <button onClick={onClose} id="closeButton">
-          X
-        </button>
+        <div id="card-top">
+          <h2>Event</h2>
+          <button onClick={onClose} id="closeButton">
+            X
+          </button>
+        </div>
 
         <p id="eventText">{eventText}</p>
 
-        <button onClick={onDelete} id="deleteButton">
-          Delete
-        </button>
+        <div id="buttons">
+          <button onClick={onDelete} id="deleteButton">
+            Delete
+          </button>
 
-        <button onClick={onUpdate} id="updateButton">
-          Update
-        </button>
+          <button onClick={onUpdate} id="updateButton">
+            Update
+          </button>
+        </div>
       </div>
 
       <div id="modalBackDrop"></div>

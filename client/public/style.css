@@ -92,6 +92,16 @@ button {
   position: absolute;
   font-family: sans-serif;
 }
+
+#deleteEventModal {
+  display: flex;
+  flex-direction: column;
+}
+#card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 #eventTitleInput {
   padding: 10px;
   width: 100%;
@@ -108,9 +118,16 @@ button {
 #cancelButton, #deleteButton {
   background-color: #d36c6c;
 }
-#saveButton, #closeButton {
+#saveButton, #updateButton {
   background-color: #92a1d1;
-  min-width: 10px;
+}
+
+#closeButton {
+  width: fit-content;
+  min-width: fit-content;
+  height: fit-content;
+  background-color: black;
+  padding: 5px 8px;
 }
 #eventText {
   font-size: 14px;

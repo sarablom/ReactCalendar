@@ -42,8 +42,9 @@ export const App = () => {
     async (event) => {
       try {
         const newEvent = await createEvent(event);
+        console.log(newEvent.event);
         setEvent(null);
-        setEvents([...events, newEvent]);
+        setEvents([...events, newEvent.event]);
         console.log(events)
       } catch (err) {
         console.log(err);
@@ -108,10 +109,6 @@ export const App = () => {
           eventText={eventForDate(clicked).title}
           onClose={() => setClicked(null)}
           eventId={eventForDate(clicked)._id}
-          // onDelete={() => {
-          //   setEvents(events.filter((e) => e.date !== clicked));
-          //   setClicked(null);
-          // }}
         />
       )}
     </>
