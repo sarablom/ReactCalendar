@@ -97,9 +97,9 @@ export const App = () => {
         <NewEventModal
           onClose={() => setClicked(null)}
           onSave={(title) => {
-            setEvents([...events, { title, date: clicked }]);
             setEvent({ title, date: clicked });
             setClicked(null);
+            window.location.reload();
           }}
         />
       )}
