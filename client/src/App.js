@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { CalendarHeader } from "./components/CalendarHeader";
 import { Day } from "./components/Day";
 import { NewEventModal } from "./components/NewEventModal";
-import { DeleteEventModal } from "./components/DeleteEventModal";
+import { SingleEventModal } from "./components/SingleEventModal";
 import { useDate } from "./hooks/useDate";
 import { createEvent, getAllEvents } from "./services/eventServices";
 
@@ -104,13 +104,14 @@ export const App = () => {
       )}
 
       {clicked && eventForDate(clicked) && (
-        <DeleteEventModal
+        <SingleEventModal
           eventText={eventForDate(clicked).title}
           onClose={() => setClicked(null)}
-          onDelete={() => {
-            setEvents(events.filter((e) => e.date !== clicked));
-            setClicked(null);
-          }}
+          eventId={eventForDate(clicked)._id}
+          // onDelete={() => {
+          //   setEvents(events.filter((e) => e.date !== clicked));
+          //   setClicked(null);
+          // }}
         />
       )}
     </>

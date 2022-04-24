@@ -110,6 +110,7 @@ button {
 }
 #saveButton, #closeButton {
   background-color: #92a1d1;
+  min-width: 10px;
 }
 #eventText {
   font-size: 14px;
