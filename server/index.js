@@ -15,6 +15,8 @@ app.use(cors());
 //Routes
 app.use("/api/events", eventRoutes);
 
+app.use(express.static(path.join(__dirname, "/../client/build")));
+
 app.listen(PORT, () => {
     console.log(`Server up and running on port ${PORT}... 💻`);
 });
