@@ -80,7 +80,7 @@ button {
   background-color: #FFFCFF !important;
   box-shadow: none !important;
 }
-#newEventModal, #deleteEventModal {
+#newEventModal {
   z-index: 20;
   padding: 25px;
   background-color: #e8f4fa;
@@ -93,15 +93,7 @@ button {
   font-family: sans-serif;
 }
 
-#deleteEventModal {
-  display: flex;
-  flex-direction: column;
-}
-#card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 #eventTitleInput {
   padding: 10px;
   width: 100%;
@@ -122,22 +114,6 @@ button {
   background-color: #92a1d1;
 }
 
-#closeButton {
-  width: fit-content;
-  min-width: fit-content;
-  height: fit-content;
-  background-color: black;
-  padding: 5px 8px;
-}
-#eventText {
-  font-size: 14px;
-}
-#modalBackDrop {
-  top: 0px;
-  left: 0px;
-  z-index: 10;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  background-color: rgba(0,0,0,0.8);
-}
+
+
+
