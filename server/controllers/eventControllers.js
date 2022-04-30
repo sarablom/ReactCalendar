@@ -27,6 +27,8 @@ async function getSingleEvent(req, res, next) {
 
 async function updateEvent(req, res, next) {
   try {
+    console.log(req.params.id);
+    console.log(req.body);
     const eventId = req.params.id;
     const event = await Event.findById(eventId);
 

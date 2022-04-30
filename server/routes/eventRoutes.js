@@ -6,7 +6,7 @@ router.get("/", eventControllers.getAllEvents);
 
 router.get("/:id", eventControllers.getSingleEvent);
 
-router.put("/:id", eventControllers.updateEvent);
+router.patch("/:id", eventControllers.updateEvent);
 
 router.delete("/:id", eventControllers.deleteEvent);
 

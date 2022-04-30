@@ -25,16 +25,18 @@ export async function getSingleEvent(id) {
   }
 }
 
-export async function updateEvent(id, event) {
+export async function updateEvent(id, eventTitle) {
+  console.log(id, eventTitle);
   try {
     const response =await fetch(`/api/events/${id}`,{
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(event),
+      body: JSON.stringify({eventTitle})
     });
   
+    console.log(response);
     const eventData = await response.json();
     console.log(eventData);
     
