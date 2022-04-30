@@ -42,10 +42,8 @@ export const App = () => {
     async (event) => {
       try {
         const newEvent = await createEvent(event);
-        console.log(newEvent.event);
         setEvent(null);
         setEvents([...events, newEvent.event]);
-        console.log(events)
       } catch (err) {
         console.log(err);
       }

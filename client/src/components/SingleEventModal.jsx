@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { updateEvent, deleteEvent } from "../services/eventServices";
 
 export const SingleEventModal = ({ eventId, eventText, onClose }) => {
-  const onUpdate = () => {
-    console.log("uppdatera", eventId);
+  const [updateEventText, setUpdateEventText] = useState(eventText);
+
+  const onUpdate = async () => {
+    try {
+      const updateMessage = await updateEvent(eventId, { title: updateEventText });
+      console.log("i onUpdate updateMessage", updateMessage);
+      // if (updateMessage.success) {
+      // onClose();
+      // window.location.reload();
+      // }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onDelete = async () => {
     try {
-      console.log("delete", eventId);
       const deleteMessage = await deleteEvent(eventId);
       if (deleteMessage.success) {
         onClose();
@@ -29,15 +39,20 @@ export const SingleEventModal = ({ eventId, eventText, onClose }) => {
           </button>
         </div>
 
-        <p id="eventText">{eventText}</p>
+        <form onSubmit={() => onUpdate()}>
+          <input
+            id="eventText"
+            placeholder={updateEventText}
+            onChange={(e) => setUpdateEventText(e.target.value)}
+          />
+          <button type="submit" id="updateButton">
+            Update
+          </button>
+        </form>
 
         <div id="buttons">
           <button onClick={onDelete} id="deleteButton">
             Delete
-          </button>
-
-          <button onClick={onUpdate} id="updateButton">
-            Update
           </button>
         </div>
       </div>
