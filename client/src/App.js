@@ -5,7 +5,6 @@ import { NewEventModal } from "./components/NewEventModal";
 import { SingleEventModal } from "./components/SingleEventModal";
 import { useDate } from "./hooks/useDate";
 import { createEvent, getAllEvents } from "./services/eventServices";
-import styled from "styled-components";
 
 export const App = () => {
   const [nav, setNav] = useState(0);
@@ -60,14 +59,14 @@ export const App = () => {
 
   return (
     <>
-      <Wrapper id="container">
+      <section id="container">
         <CalendarHeader
           dateDisplay={dateDisplay}
           onNext={() => setNav(nav + 1)}
           onBack={() => setNav(nav - 1)}
         />
 
-        <Weekdays id="weekdays">
+        <article id="weekdays">
           <div>Måndag</div>
           <div>Tisdag</div>
           <div>Onsdag</div>
@@ -75,9 +74,9 @@ export const App = () => {
           <div>Fredag</div>
           <div>Lördag</div>
           <div>Söndag</div>
-        </Weekdays>
+        </article>
 
-        <Calender id="calendar">
+        <article id="calendar">
           {days.map((d, index) => (
             <Day
               key={index}
@@ -89,8 +88,8 @@ export const App = () => {
               }}
             />
           ))}
-        </Calender>
-      </Wrapper>
+        </article>
+      </section>
 
       {clicked && !eventForDate(clicked) && (
         <NewEventModal
@@ -113,25 +112,3 @@ export const App = () => {
     </>
   );
 };
-
-const Wrapper = styled.section`
-  width: 770px;
-`;
-
-const Weekdays = styled.article`
-  width: 100%;
-  display: flex;
-  color: #247ba0;
-
-  div {
-    width: 100px;
-    padding: 10px;
-  }
-`;
-
-const Calender = styled.article `
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-`
