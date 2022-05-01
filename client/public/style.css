@@ -2,7 +2,7 @@ body {
   display: flex;
   margin-top: 50px;
   justify-content: center;
-  background-color: #FFFCFF;
+  background-color: #fffcff;
 }
 button {
   margin-right: 2.5px;
@@ -17,14 +17,13 @@ button {
   color: white;
 }
 
-
 #container {
   width: 770px;
 }
 #weekdays {
   width: 100%;
   display: flex;
-  color: #247BA0;
+  color: #247ba0;
 }
 #weekdays div {
   width: 100px;
@@ -44,7 +43,7 @@ button {
   box-sizing: border-box;
   background-color: white;
   margin: 5px;
-  box-shadow: 0px 0px 3px #CBD4C2;
+  box-shadow: 0px 0px 3px #cbd4c2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -54,43 +53,14 @@ button {
 }
 
 .day + .currentDay {
-  background-color:#e8f4fa;
-}
-
-#newEventModal {
-  z-index: 20;
-  padding: 25px;
   background-color: #e8f4fa;
-  box-shadow: 0px 0px 3px black;
-  border-radius: 5px;
-  width: 350px;
-  top: 100px;
-  left: calc(50% - 175px);
-  position: absolute;
-  font-family: sans-serif;
 }
 
-
-#eventTitleInput {
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 25px;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-  box-shadow: 0px 0px 3px gray;
-}
-#eventTitleInput.error {
-  border: 2px solid red;
-}
-#cancelButton, #deleteButton {
+#cancelButton,
+#deleteButton {
   background-color: #d36c6c;
 }
-#saveButton, #updateButton {
+#saveButton,
+#updateButton {
   background-color: #92a1d1;
 }
-
-
-
-
