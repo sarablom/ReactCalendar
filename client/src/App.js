@@ -5,6 +5,7 @@ import { NewEventModal } from "./components/NewEventModal";
 import { SingleEventModal } from "./components/SingleEventModal";
 import { useDate } from "./hooks/useDate";
 import { createEvent, getAllEvents } from "./services/eventServices";
+import styled from "styled-components";
 
 export const App = () => {
   const [nav, setNav] = useState(0);
@@ -17,15 +18,15 @@ export const App = () => {
     try {
       const allEvents = await getAllEvents();
       if (allEvents?.events) {
-        allEvents.events.map (event => {
+        allEvents.events.map((event) => {
           const day = new Date(event.date).getDate();
           const month = new Date(event.date).getMonth() + 1;
           const year = new Date(event.date).getFullYear();
 
           const dayString = `${month}/${day}/${year}`;
-          return event.date = dayString;
-        })
-        setEvents(allEvents.events)
+          return (event.date = dayString);
+        });
+        setEvents(allEvents.events);
       }
     } catch (err) {
       console.log(err);
@@ -35,9 +36,9 @@ export const App = () => {
   useEffect(() => {
     getEventsForDisplay();
   }, [getEventsForDisplay]);
-  
+
   const eventForDate = (date) => events.find((e) => e.date === date);
-  
+
   const createNewEvent = useCallback(
     async (event) => {
       try {
@@ -59,14 +60,14 @@ export const App = () => {
 
   return (
     <>
-      <div id="container">
+      <Wrapper id="container">
         <CalendarHeader
           dateDisplay={dateDisplay}
           onNext={() => setNav(nav + 1)}
           onBack={() => setNav(nav - 1)}
         />
 
-        <div id="weekdays">
+        <Weekdays id="weekdays">
           <div>Måndag</div>
           <div>Tisdag</div>
           <div>Onsdag</div>
@@ -74,9 +75,9 @@ export const App = () => {
           <div>Fredag</div>
           <div>Lördag</div>
           <div>Söndag</div>
-        </div>
+        </Weekdays>
 
-        <div id="calendar">
+        <Calender id="calendar">
           {days.map((d, index) => (
             <Day
               key={index}
@@ -88,8 +89,8 @@ export const App = () => {
               }}
             />
           ))}
-        </div>
-      </div>
+        </Calender>
+      </Wrapper>
 
       {clicked && !eventForDate(clicked) && (
         <NewEventModal
@@ -112,3 +113,25 @@ export const App = () => {
     </>
   );
 };
+
+const Wrapper = styled.section`
+  width: 770px;
+`;
+
+const Weekdays = styled.article`
+  width: 100%;
+  display: flex;
+  color: #247ba0;
+
+  div {
+    width: 100px;
+    padding: 10px;
+  }
+`;
+
+const Calender = styled.article `
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+`

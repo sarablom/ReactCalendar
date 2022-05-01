@@ -17,24 +17,6 @@ button {
   color: white;
 }
 
-#container {
-  width: 770px;
-}
-#weekdays {
-  width: 100%;
-  display: flex;
-  color: #247ba0;
-}
-#weekdays div {
-  width: 100px;
-  padding: 10px;
-}
-#calendar {
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
 .day {
   width: 100px;
   padding: 10px;
